@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RazorPagesMovie</title>
+
+    <environment include="Development">
+        <!-- <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" /> -->
+        <link rel="stylesheet" type="text/css" href="~/semantic/out/semantic.min.css">
+        <link rel="stylesheet" href="~/css/site.css" />
+        <style type="text/css">
+            body {
+                display: relative;
+            }
+
+            #sidebar {
+                position: fixed;
+                top: 45.8px;
+                left: 0;
+                bottom: 0;
+                width: 18%;
+                background-color: rgba(22, 42, 53, 0.658);
+                padding: 0px;
+            }
+
+            #sidebar .ui.menu {
+                margin: 2em 0 0;
+                font-size: 16px;
+            }
+
+            #sidebar .ui.menu>a.item {
+                color: white;
+                border-radius: 0 !important;
+            }
+
+            #sidebar .ui.menu>a.item.active {
+                background-color: #337ab7;
+                color: white;
+                border: none !important;
+            }
+
+            #sidebar .ui.menu>a.item:hover {
+                background-color: #4f93ce;
+                color: white;
+            }
+
+            #content {
+                margin-left: 19%;
+                width: 81%;
+                margin-top: 3em;
+                padding-left: 3em;
+                float: left;
+            }
+
+            #content>.ui.grid {
+                padding-right: 4em;
+                padding-bottom: 3em;
+            }
+
+            #content h1 {
+                font-size: 36px;
+            }
+
+            #content .ui.divider:not(.hidden) {
+                margin: 0;
+            }
+
+            #content table.ui.table {
+                border: none;
+            }
+
+            #content table.ui.table thead th {
+                border-bottom: 2px solid #eee !important;
+            }
+        </style>
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+            asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-fallback-test-class="sr-only"
+            asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+
+<body>
+    <div class="ui inverted huge fixed menu">
+        <a class="header item">Project name</a>
+        <div class="right menu">
+            <a class="item">Dashboard</a><a class="item">Settings</a><a class="item">Profile</a><a class="item">Help</a>
+        </div>
+    </div>
+    <div class="ui grid grey">
+        <div class="column" id="sidebar">
+            <div class="ui secondary vertical fluid menu">
+                <a class="item">Analytics</a>
+                <a class="item">Nav item</a>
+                <a class="item">Macintosh</a>
+                <a class="item">Windows</a>
+            </div>
+        </div>
+    </div>
+
+    <partial name="_CookieConsentPartial" />
+
+    <div class="column" id="content">
+        @RenderBody()
+        <footer>
+            <p>&copy; 2018 - RazorPagesMovie</p>
+        </footer>
+    </div>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <!-- <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script> -->
+        <script src="~/semantic/out/semantic.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/jquery-2.1.4.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>
