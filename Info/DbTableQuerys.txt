@@ -1,0 +1,139 @@
+TABLE CREATION QUERYS:
+
+Create Table Restaurants (RestaurantId serial primary key,Name text,Address text,Mobile text,StatusTypeId integer)
+
+Create Table Categories(CategoryId serial primary key,Name text,StatusTypeId integer)
+
+Create Table SubCategories(SubCategoryId serial primary key, CategoryId integer references Categories(CategoryId),
+						  Name text,StatusTypeId integer)
+						  
+Create Table RestaurantItems(RestItemId serial primary key,RestaurantId integer references Restaurants(RestaurantId),ItemName text, CategoryId integer references Categories(CategoryId),SubCategoryId integer references SubCategories(SubCategoryId),Cost decimal,Description text,StatusTypeId integer)
+
+							
+INSERT QUERYS:
+
+RESTAURANTS:
+
+Insert into Restaurants (Name,Address,Mobile,StatusTypeId) values ('Bawarchi','Madhapur, Hyderabad','040-32568452',1)
+Insert into Restaurants (Name,Address,Mobile,StatusTypeId) values ('Paradise','Sanath Nagar, Hyderabad','040-24515896',1)
+Insert into Restaurants (Name,Address,Mobile,StatusTypeId) values ('Pista House','Jubilee Hills, Hyderabad','040-41258796',1)
+Insert into Restaurants (Name,Address,Mobile,StatusTypeId) values ('Kritunga','Ameerpet, Hyderabad','040-43548962',1)
+
+CATEGORIES:
+
+Insert into Categories (Name,StatusTypeId) values('Vegetarian',1)
+Insert into Categories (Name,StatusTypeId) values('Non-Vegetarian',1)
+
+SUBCATEGORIES:
+
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(1,'Meals',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(1,'Veg-Soups',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(1,'Tiffins',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(1,'Veg-Starters',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(1,'Ice Creams',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(1,'Sweets',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(1,'Juice',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(1,'Bakery Items',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(2,'Biryani',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(2,'Kababs',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(2,'Non-Veg Starters',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(2,'Non-Veg Soups',1)
+INSERT Into SubCategories (CategoryId,Name,StatusTypeId) values(2,'Special Non-Veg Items',1)
+
+RESTAURANTITEMS:
+
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'South Indian Meals',1,1,150,'Full meals with todays special curries and curd of south indian special',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'North Indian Meals',1,1,160,'Full meals with todays special curries and curd of north indian special',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Chapathi',1,3,50,'Quantity of 2 will be available for one plate',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Idly',1,3,50,'Quantity of 3 will be available for one plate',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Dosa',1,3,50,'One piece for one plate',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'StrawBerry',1,5,100,'Ice Cream',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Chicken Biryani Hundi',2,9,150,'Biryani of Hundi',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Chicken Kabab',2,10,100,'Quantity of 2 will be available for one plate',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Chicken Lollipop',2,11,200,'Quantity of 4 will be available for one plate',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Chicken Tikka',2,13,100,'Chicken Tikka',1)
+
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Chicken 65',2,null,100,'Chicken 65',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Chicken Manchuria',2,null,100,'Chicken Manchuria',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Chicken Noodles',2,null,100,'Chicken Noodles',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Veg Noodles',1,null,100,'Veg Noodles',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Veg Manchuria',1,null,100,'Veg Manchuria',1)
+
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Chapathi',1,null,50,'Quantity of 2 will be avialable for one plate',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Poori',1,null,50,'Quantity of 2 will be avialable for one plate',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Chicken Curry',2,null,100,'Chicken Curry',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Rice',1,null,100,'Rice',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Pulka',1,null,100,'Pulka',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Rice With Pulka',1,null,100,'Rice With Pulka',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Curry1',1,null,100,'Curry1',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Curry2',1,null,100,'Curry2',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Curry3',1,null,100,'Curry3',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Curd',1,null,100,'Curd',1)
+INSERT INTO RestaurantItems (RestaurantId,ItemName,CategoryId,SubCategoryId,Cost,Description,StatusTypeId)
+values(1,'Papad',1,null,10,'Papad',1)
+
+
+PLANMASTERS:
+
+Create table PlanMaster (PlanMasterId serial primary key,Name text,StatusTypeId integer)
+Insert Into PlanMaster (Name, StatusTypeId) values('BreakFast',1),('Lunch',1),('Dinner',1)
+
+
+PLANS:
+
+Create table Plans (PlanId serial primary key,Name text, RestaurantId integer references Restaurants(RestaurantId),
+				    CategoryId integer references Categories(CategoryId),
+					PlanMasterId integer references PlanMaster(PlanMasterId),StatusTypeId integer)
+Insert Into Plans (Name,RestaurantId,CategoryId,PlanMasterId,StatusTypeId)
+values ('Break Fast Plan',1,1,1,1),('Lunch Plan',1,2,2,1),('Dinner Plan',1,1,3,1);
+
+PLANITEMS:
+Create table PlanItems(PlanItemId serial primary key, PlanId integer references Plans(PlanId),DateOfPlan date,
+					  SelectedItemIds integer[],DefaultItemIds integer[],MaxItemsToSelect integer, StatusTypeId integer);;;
+
+Insert Into PlanItems (PlanId, DateOfPlan, SelectedItemIds,DefaultItemIds,MaxItemsToSelect,StatusTypeId)
+values(1,'2018-11-22','{1,2,24,25}','{1}',1,1),
+(2,'2018-11-23','{4,29,24}','{4,27}',2,1),(2,'2018-11-23','{26,30,31,32}','{26,30}',2,1),
+(2,'2018-11-23','{33}','{33}',1,1),(2,'2018-11-23','{34}','{34}',1,1),
+(3,'2018-11-24','{27,28,29,24}','{24,27}',2,1),(3,'2018-11-24','{30,31,32}','{30,31}',2,1),
+(3,'2018-11-24','{33}','{33}',1,1),(3,'2018-11-24','{34}','{34}',1,1);
+
+
+Alter table PlanMaster add column PlanImage text
+
+update PlanMaster set PlanImage='/Uploads/ItemImages/Idly.jpg' where PlanMasterId=1
+update PlanMaster set PlanImage='/Uploads/ItemImages/SouthIndianMeals.jpg' where PlanMasterId=2
+update PlanMaster set PlanImage='/Uploads/ItemImages/NorthIndianMeals.jpg' where PlanMasterId=3
+
+
+Alter table Plans add column PlanImagePath text
+
+update Plans set PlanImagePath='/Uploads/ItemImages/Idly.jpg' where PlanMasterId=1
+update Plans set PlanImagePath='/Uploads/ItemImages/SouthIndianMeals.jpg' where PlanMasterId=2
+update Plans set PlanImagePath='/Uploads/ItemImages/NorthIndianMeals.jpg' where PlanMasterId=3
+

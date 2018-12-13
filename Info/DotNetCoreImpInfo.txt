@@ -1,0 +1,33 @@
+* Create a solution folder and open it and run 
+  dotnet new sln
+  Which will create a solution.
+
+* Add packages as
+  dotnet add package Npgsql
+  dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+
+* Create projects in solution folder as 
+  dotnet new webapi/console/razor/mvc/classlib
+
+* Add Created projects to the solution as
+  dotnet sln 'sln name with extension sln' add 'project path and name from solution with extension' 
+
+* Generate models from postgresql using dbfirst approach from the following command.
+  dotnet ef dbcontext scaffold "Host=my_host;Database=my_db;Username=my_user;Password=my_pw" Npgsql.EntityFrameworkCore.PostgreSQL
+  dotnet ef dbcontext scaffold "Host=localhost;Database=foodexp;Username=postgres;Password=test12$" Npgsql.EntityFrameworkCore.PostgreSQL
+  dotnet ef dbcontext scaffold "Host=192.168.1.6;Database=FoodEx;Username=foodexuser;Password=foodexuser6" Npgsql.EntityFrameworkCore.PostgreSQL -o Models
+
+* Solution for dotnet ef command not found error. Add the following package.
+  dotnet add package Microsoft.EntityFrameworkCore.Design
+
+* Required assets to build and debug 
+
+* Adding reference between projects.
+  Go to the path of the project for which we want add reference in command.
+  dotnet add reference ../Project1.Api/Project1.Api.csproj
+
+
+RAZOR PAGES:
+* We need to define @page directive at the top of the .cshtml file.
+  The @page directive tells Razor that this .cshtml file represents a Razor Page
