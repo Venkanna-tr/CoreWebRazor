@@ -1,0 +1,164 @@
+Create Schema Food_Ex_Sch;
+
+Create table Food_Ex_Sch.Status_Types(Status_Type_Id serial primary key, Name text not null);
+
+Create table Food_Ex_Sch.User_Types(User_Type_Id serial primary key, Name text not null);
+
+Create table Food_Ex_Sch.Roles(Role_Id serial primary key, Name text not null,User_Type_Id integer 
+							   references Food_Ex_Sch.User_Types(User_Type_Id) not null,Status_Type_Id integer
+							   references Food_Ex_Sch.Status_Types(Status_Type_Id) not null);
+							   
+Create table Food_Ex_Sch.Login_Status_Types(Login_Status_Type_Id serial primary key, Name text not null);
+
+Create table Food_Ex_Sch.Subscription_Types(Subscription_Type_Id serial primary key, Name text not null);
+
+Create table Food_Ex_Sch.Plan_Masters(Plan_Master_Id serial primary key, Name text not null);
+
+Create table Food_Ex_Sch.Order_Status_Types(Order_Status_Type_Id serial primary key, Name text not null);
+
+Create table Food_Ex_Sch.Proof_Types(Proof_Type_Id serial primary key, Name text not null);
+
+Create table Food_Ex_Sch.Users(User_Id serial primary key, First_Name text not null,Last_Name text,
+							   User_Name text not null,Mobile_No text,Email text,Address1 text,
+							  Address2 text,Address3 text,Role_Id integer references Food_Ex_Sch.Roles(Role_Id) not null,
+							  User_Type_Id integer references Food_Ex_Sch.User_Types(User_Type_Id) not null,
+							  Created_By integer references Food_Ex_Sch.Users(User_Id) not null,
+							  Created_Date timestamp not null,
+							  Updated_By integer references Food_Ex_Sch.Users(User_Id),
+							  Updated_Date timestamp,
+							  Status_Type_Id integer references Food_Ex_Sch.Status_Types(Status_Type_Id) not null);
+							  
+Create table Food_Ex_Sch.User_Creds(User_Id serial primary key references Food_Ex_Sch.Users(User_Id),
+							  Password_Encryption text,Password_Hash text);
+							  
+Create table Food_Ex_Sch.User_Logs(User_Log_Id serial primary key,User_Id integer 
+								   references Food_Ex_Sch.Users(User_Id) not null,
+							       User_Name text not null,Logon_Time timestamp not null,
+								  Logout_Time timestamp,Session_Id UUID,Login_Status_Type_Id integer
+								  references Food_Ex_Sch.Login_Status_Types(Login_Status_Type_Id) not null,Client_Ip text,
+								  Login_Device_Type_Id integer references Food_Ex_Sch.Login_Device_Types(Login_Device_Type_Id) not null,
+								  Device_Model text);
+
+Create table Food_Ex_Sch.Restaurants(Restaurant_Id serial primary key,Name text not null,Address1 text,
+							  Address2 text,Address3 text,Mobile_No text,Email text,
+							  Created_By integer references Food_Ex_Sch.Users(User_Id) not null,
+							  Created_Date timestamp not null,
+							  Updated_By integer references Food_Ex_Sch.Users(User_Id),
+							  Updated_Date timestamp,
+							  Status_Type_Id integer references Food_Ex_Sch.Status_Types(Status_Type_Id) not null);	
+
+Create table Food_Ex_Sch.Restaurant_Users(Restaurant_User_Id serial primary key,
+							  User_Id integer references Food_Ex_Sch.Users(User_Id) not null,
+							  Restaurant_Id integer references Food_Ex_Sch.Restaurants(Restaurant_Id) not null,
+							  Proof_Document_Path text,
+							  Proof_Type_Id integer references Food_Ex_Sch.Proof_Types(Proof_Type_Id),
+							  OtherProof text,
+							  Created_By integer references Food_Ex_Sch.Users(User_Id) not null,
+							  Created_Date timestamp not null,
+							  Updated_By integer references Food_Ex_Sch.Users(User_Id),
+							  Updated_Date timestamp,
+							  Status_Type_Id integer references Food_Ex_Sch.Status_Types(Status_Type_Id) not null);
+							  
+Create Table Food_Ex_Sch.App_Main_Menus(App_Main_Menu_Id serial primary key,Nav_Path text,Icon_Path text,
+									   Menu_Text text not null,Order_Id integer,
+									   Status_Type_Id integer references Food_Ex_Sch.Status_Types(Status_Type_Id) not null);
+
+Create Table Food_Ex_Sch.App_Sub_Menus(App_Sub_Menu_Id serial primary key,
+									   App_Main_Menu_Id integer references Food_Ex_Sch.App_Main_Menus(App_Main_Menu_Id),
+									   Nav_Path text,Icon_Path text,
+									   Menu_Text text not null,Order_Id integer,
+									   Status_Type_Id integer references Food_Ex_Sch.Status_Types(Status_Type_Id) not null);
+
+Create Table Food_Ex_Sch.App_Role_Menus(App_Role_Id serial primary key,
+									   Role_Id integer references Food_Ex_Sch.Roles(Role_Id) not null,
+									   App_Sub_Menu_Id integer references Food_Ex_Sch.App_Sub_Menus(App_Sub_Menu_Id) not null,
+									   CanView boolean not null,CanAdd boolean not null,CanEdit boolean not null,
+									   CanDelete boolean not null,IsActive boolean not null);	
+
+Create Table Food_Ex_Sch.Categories(Category_Id serial primary key,Name text not null,
+								   Status_Type_Id integer references Food_Ex_Sch.Status_Types(Status_Type_Id) not null);	
+
+Create Table Food_Ex_Sch.Restaurant_Items(Item_Id serial primary key,
+								   Category_Id integer references Food_Ex_Sch.Categories(Category_Id) not null,	 
+								   Name text not null,
+								   Alias_Name text,Description text,
+							       ImageName text,ImagePath text,
+								   Restaurant_Id integer references Food_Ex_Sch.Restaurants(Restaurant_Id) not null,
+								   Created_By integer references Food_Ex_Sch.Users(User_Id) not null,
+							       Created_Date timestamp not null,
+							       Updated_By integer references Food_Ex_Sch.Users(User_Id),
+							       Updated_Date timestamp,
+							       Status_Type_Id integer references Food_Ex_Sch.Status_Types(Status_Type_Id) not null);
+
+Create Table Food_Ex_Sch.Plans(Plan_Id serial primary key,Name text not null,
+							  Restaurant_Id integer references Food_Ex_Sch.Restaurants(Restaurant_Id) not null,
+							  Category_Id integer references Food_Ex_Sch.Categories(Category_Id) not null,
+							  Plan_Master_Id integer references Food_Ex_Sch.Plan_Masters(Plan_Master_Id) not null,
+							  Cost decimal(18,2) not null,Description text,
+							  ImageName text,ImagePath text,
+							  Created_By integer references Food_Ex_Sch.Users(User_Id) not null,
+							  Created_Date timestamp not null,
+							  Updated_By integer references Food_Ex_Sch.Users(User_Id),
+							  Updated_Date timestamp,
+							  Status_Type_Id integer references Food_Ex_Sch.Status_Types(Status_Type_Id) not null);		
+
+Create Table Food_Ex_Sch.Plan_Items(Plan_Item_Id serial primary key,
+								   Plan_Id integer references Food_Ex_Sch.Plans(Plan_Id) not null,
+									Item_Id integer references Food_Ex_Sch.Restaurant_Items(Item_Id) not null,
+									IsDefaultItem boolean not null,
+									GroupId UUID not null,
+									Created_By integer references Food_Ex_Sch.Users(User_Id) not null,
+							        Created_Date timestamp not null,
+							        Updated_By integer references Food_Ex_Sch.Users(User_Id),
+							        Updated_Date timestamp,
+							        Status_Type_Id integer references Food_Ex_Sch.Status_Types(Status_Type_Id) not null);	
+
+
+Create Table Food_Ex_Sch.Subscribed_Users(Subscribed_User_Id serial primary key,
+						User_Id integer references Food_Ex_Sch.Users(User_Id) not null,
+						Subscription_Type_Id integer references Food_Ex_Sch.Subscription_Types(Subscription_Type_Id) not null,
+						Plan_Id integer references Food_Ex_Sch.Plans(Plan_Id) not null,
+						From_Date timestamp,To_Date timestamp,Total_Days integer,
+						Created_Date timestamp not null,Updated_Date timestamp);	
+
+Create Table Food_Ex_Sch.User_Orders(User_Order_Id serial primary key,
+									Subscribed_User_Id integer references Food_Ex_Sch.Subscribed_Users(Subscribed_User_Id) not null,
+									Ordered_Date timestamp not null,
+									Order_Status_Type_Id integer references Food_Ex_Sch.Order_Status_types(Order_Status_Type_Id) not null,				
+									Created_Date timestamp not null,Updated_Date timestamp);
+
+Create Table Food_Ex_Sch.User_Order_Items(User_Order_Item_Id serial primary key,
+										 User_Order_Id integer references Food_Ex_Sch.User_Orders(User_Order_Id) not null,
+										 Item_Id integer references Food_Ex_Sch.Restaurant_Items(Item_Id) not null,
+										 Group_Id UUID,Created_Date timestamp not null);	
+
+
+DATA INSERTION:
+
+
+Insert Into Food_Ex_Sch.Status_Types (Name) Values('Active') ,('InActive')		
+
+Insert Into Food_Ex_Sch.User_Types (Name) Values('Super User'),('Restaurant User'), ('Customer')
+
+Insert Into Food_Ex_Sch.Roles (Name,User_Type_Id,Status_Type_Id) Values(' Super Admin',1,1),
+('Restaurant Admin',2,1), ('Restaurant Executive',2,1),('Delivery Executive',2,1),('Customer',3,1)
+
+Insert Into Food_Ex_Sch.Login_Status_Types (Name) Values('Logged In'),('Logged Out'),
+('Invalid User Name'),('Invalid Password'),('User Is Inactive'),('User Is Deleted')	
+
+Insert Into Food_Ex_Sch.Login_Device_Types (Name) Values('Web'),('Android'),('Apple')							 
+
+Insert Into Food_Ex_Sch.Subscription_Types (Name) Values('Trial'),('Payment')
+
+Insert Into Food_Ex_Sch.Plan_Masters (Name) Values('BreakFast'),('Lunch'),('Dinner')
+
+Insert Into Food_Ex_Sch.Proof_Types (Name) Values('Aadhar'),('Pan')
+
+Insert Into Food_Ex_Sch.Categories (Name,Status_Type_Id) Values('Veg',1),('Non-Veg',1)
+
+insert Into Food_Ex_Sch.Users(First_Name,Last_Name,User_Name,Mobile_No,Email,Address1,Address2,Role_Id,User_Type_Id,
+							 Created_By,Created_Date,Status_Type_Id)
+							 
+Values('Ganesh','Kumar','admin','9989991287','ganesh.k@techraq.com','Sanath nagar','Hyderabad',1,1,1,'2018-12-12',1)
+							  
+							  
