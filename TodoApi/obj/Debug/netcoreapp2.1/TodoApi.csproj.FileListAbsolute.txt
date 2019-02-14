@@ -40,3 +40,11 @@ E:\GithubRoot\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.AssemblyInfo.
 E:\GithubRoot\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.RazorTargetAssemblyInfo.cache
 E:\GithubRoot\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.dll
 E:\GithubRoot\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.pdb
+D:\Venkanna\R&D\Git_Proj\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.csprojAssemblyReference.cache
+D:\Venkanna\R&D\Git_Proj\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.csproj.CoreCompileInputs.cache
+D:\Venkanna\R&D\Git_Proj\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.RazorAssemblyInfo.cache
+D:\Venkanna\R&D\Git_Proj\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.RazorAssemblyInfo.cs
+D:\Venkanna\R&D\Git_Proj\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.AssemblyInfoInputs.cache
+D:\Venkanna\R&D\Git_Proj\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.AssemblyInfo.cs
+D:\Venkanna\R&D\Git_Proj\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.dll
+D:\Venkanna\R&D\Git_Proj\CoreWebRazor\todoapi\obj\Debug\netcoreapp2.1\todoapi.pdb

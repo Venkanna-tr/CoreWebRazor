@@ -76,3 +76,5 @@ E:\GithubRoot\CoreWebRazor\razorpagesmovie\obj\Debug\netcoreapp2.1\RazorPagesMov
 E:\GithubRoot\CoreWebRazor\razorpagesmovie\obj\Debug\netcoreapp2.1\RazorPagesMovie.csproj.CopyComplete
 E:\GithubRoot\CoreWebRazor\razorpagesmovie\obj\Debug\netcoreapp2.1\RazorPagesMovie.dll
 E:\GithubRoot\CoreWebRazor\razorpagesmovie\obj\Debug\netcoreapp2.1\RazorPagesMovie.pdb
+D:\Venkanna\R&D\Git_Proj\CoreWebRazor\RazorPagesMovie\obj\Debug\netcoreapp2.1\RazorPagesMovie.dll
+D:\Venkanna\R&D\Git_Proj\CoreWebRazor\RazorPagesMovie\obj\Debug\netcoreapp2.1\RazorPagesMovie.pdb
